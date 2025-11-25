@@ -4,534 +4,196 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Course Unregistration Notification</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #e5e5e5;
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
-        .mail-wrapper {
-            width: 100%;
-            max-width: 600px;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-
-        /* TOP LOGO */
-        .header-logo {
-            margin-top: -5px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .logo-subtext {
-            font-size: 14px;
-            color: #666666;
-            font-weight: 400;
-        }
-
-        /* LIGHT PALE PINK CONTAINER */
-        .pink-container {
-            background: #f7f4f4;
-            border-radius: 8px;
-            padding: 40px 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        /* FIRST CARD - Main Content */
-        .mail-card {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Title */
-        .mail-card h2 {
-            text-align: center;
-            margin: 0;
-            padding: 40px 32px 28px 32px;
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-
-        /* GIF Image */
-        .mail-gif {
-            display: block;
-            margin: 0 auto;
-            max-width: 140px;
-            height: auto;
-            padding: 0 32px 32px 32px;
-        }
-
-        /* Greeting */
-        .greeting {
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0 32px 12px 32px;
-            color: #1a1a1a;
-            font-weight: 500;
-        }
-
-        .highlight {
-            font-weight: 600;
-        }
-
-        /* Intro text */
-        .intro-text {
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0 32px 20px 32px;
-            color: #1a1a1a;
-        }
-
-        /* DETAILS BOX */
-        .details-box {
-            margin: 0;
-            padding: 0 32px 24px 32px;
-        }
-
-        .details-box p {
-            margin: 0 0 12px 0;
-            font-size: 14px;
-            color: #1a1a1a;
-            line-height: 1.7;
-        }
-
-        .details-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        .details-box strong {
-            font-weight: 600;
-        }
-
-        /* ALERT WARNING BOX - Yellow */
-        .alert-box {
-            background: #FFD54F;
-            padding: 18px;
-            border-radius: 6px;
-            font-size: 14px;
-            margin: 0 32px 24px 32px;
-            line-height: 1.6;
-            color: #1a1a1a;
-        }
-
-        /* Instruction paragraphs */
-        .instruction-text {
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 32px 20px 32px;
-            color: #1a1a1a;
-        }
-
-        .instruction-text.last-instruction {
-            margin-bottom: 40px;
-        }
-
-        /* SECOND CARD - Footer Content */
-        .footer-card {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 0;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            margin: 0;
-            padding: 40px 32px 24px 32px;
-        }
-
-        .contact-heading {
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 0 12px 0;
-            color: #1a1a1a;
-        }
-
-        .contact-heading strong {
-            font-weight: 700;
-        }
-
-        .contact-details {
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0;
-            color: #1a1a1a;
-        }
-
-        .contact-details a {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-
-        .contact-details a:hover {
-            text-decoration: underline;
-        }
-
-        /* Automated notification */
-        .automated-note {
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 32px 12px 32px;
-            color: #1a1a1a;
-        }
-
-        .institution-note {
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 32px 32px 32px;
-            color: #1a1a1a;
-        }
-
-        /* SOCIAL LINKS - Outside the card */
-        .socials {
-            text-align: center;
-            margin: 48px 0 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-        }
-
-        .socials a {
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-
-        .socials a:hover {
-            transform: scale(1.1);
-        }
-
-        .socials svg {
-            display: block;
-            width: 32px;
-            height: 32px;
-        }
-
-        /* COPYRIGHT - Outside the card */
-        .copyright {
-            text-align: center;
-            font-size: 14px;
-            margin: 0 0 32px 0;
-            color: #1a1a1a;
-        }
-
-        /* ✅ RESPONSIVENESS */
-
-        /* Tablets */
-        @media (max-width: 768px) {
-            .pink-container {
-                padding: 32px 20px;
-            }
-            
-            .mail-card h2 {
-                padding: 28px 24px 24px 24px;
-                font-size: 18px;
-            }
-            
-            .mail-gif {
-                padding: 0 24px 28px 24px;
-                max-width: 120px;
-            }
-            
-            .greeting {
-                padding: 0 24px 8px 24px;
-            }
-            
-            .intro-text {
-                padding: 0 24px 16px 24px;
-            }
-            
-            .details-box {
-                padding: 0 24px 20px 24px;
-            }
-            
-            .alert-box {
-                margin: 0 24px 20px 24px;
-            }
-            
-            .instruction-text {
-                margin: 0 24px 16px 24px;
-            }
-            
-            .instruction-text.last-instruction {
-                margin-bottom: 28px;
-            }
-            
-            .contact-section {
-                padding: 28px 24px 20px 24px;
-            }
-            
-            .automated-note,
-            .institution-note {
-                margin-left: 24px;
-                margin-right: 24px;
-            }
-        }
-
-        /* Mobile phones */
-        @media (max-width: 480px) {
-            body {
-                padding: 12px 0;
-            }
-            
-            .mail-wrapper {
-                padding: 0 12px;
-            }
-            
-            .pink-container {
-                padding: 24px 16px;
-            }
-            
-            .mail-card {
-                margin-bottom: 20px;
-            }
-            
-            .mail-card h2 {
-                padding: 24px 20px 20px 20px;
-                font-size: 17px;
-            }
-            
-            .mail-gif {
-                padding: 0 20px 28px 20px;
-                max-width: 120px;
-            }
-            
-            .greeting {
-                padding: 0 20px 8px 20px;
-                font-size: 13px;
-            }
-            
-            .intro-text {
-                padding: 0 20px 16px 20px;
-                font-size: 13px;
-            }
-            
-            .details-box {
-                padding: 0 20px 20px 20px;
-            }
-            
-            .details-box p {
-                font-size: 13px;
-                margin-bottom: 8px;
-            }
-            
-            .alert-box {
-                padding: 14px;
-                font-size: 13px;
-                margin: 0 20px 20px 20px;
-            }
-            
-            .instruction-text {
-                font-size: 13px;
-                margin: 0 20px 16px 20px;
-            }
-            
-            .instruction-text.last-instruction {
-                margin-bottom: 24px;
-            }
-            
-            .contact-section {
-                padding: 24px 20px 20px 20px;
-            }
-            
-            .contact-heading,
-            .contact-details {
-                font-size: 13px;
-            }
-            
-            .automated-note,
-            .institution-note {
-                font-size: 13px;
-                margin-left: 20px;
-                margin-right: 20px;
-            }
-            
-            .socials {
-                gap: 12px;
-                margin-bottom: 14px;
-            }
-            
-            .socials svg {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .logo-text {
-                font-size: 18px;
-            }
-            
-            .logo-subtext {
-                font-size: 12px;
-            }
-            
-            .copyright {
-                font-size: 13px;
-                margin-bottom: 24px;
-            }
-        }
-
-        /* Extra small phones */
-        @media (max-width: 360px) {
-            .pink-container {
-                padding: 20px 12px;
-            }
-            
-            .mail-card h2 {
-                padding: 20px 16px;
-                font-size: 16px;
-            }
-            
-            .mail-gif {
-                padding: 0 16px 24px 16px;
-                max-width: 100px;
-            }
-            
-            .greeting {
-                padding: 0 16px 8px 16px;
-            }
-            
-            .intro-text {
-                padding: 0 16px 16px 16px;
-            }
-            
-            .details-box {
-                padding: 0 16px 20px 16px;
-            }
-            
-            .alert-box {
-                margin: 0 16px 20px 16px;
-            }
-            
-            .instruction-text {
-                margin: 0 16px 16px 16px;
-            }
-            
-            .instruction-text.last-instruction {
-                margin-bottom: 20px;
-            }
-            
-            .contact-section {
-                padding: 20px 16px 20px 16px;
-            }
-            
-            .automated-note,
-            .institution-note {
-                margin-left: 16px;
-                margin-right: 16px;
-            }
-        }
-    </style>
 </head>
 
-<body>
-<div class="mail-wrapper">
+<body style="margin: 0; padding: 0; background-color: #e5e5e5; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #e5e5e5; margin: 0; padding: 0;">
+    <tr>
+        <td align="center" style="padding: 20px 10px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; width: 100%;">
+                
+                <!-- TOP LOGO -->
+                <tr>
+                    <td style="padding: 0 0 24px 0;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                            <tr>
+                                <td style="font-size: 20px; font-weight: 600; color: #1a1a1a; padding-right: 8px; vertical-align: baseline; line-height: 1.2;">inpulse</td>
+                                <td style="font-size: 14px; color: #666666; font-weight: 400; vertical-align: baseline; line-height: 1.2;">by Inunity</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-    <!-- Light Pale Pink Container -->
-    <div class="pink-container">
+                <!-- FIRST WHITE CARD - Main Content -->
+                <tr>
+                    <td style="padding: 0 0 32px 0;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
+                            
+                            <!-- Title -->
+                            <tr>
+                                <td style="text-align: center; padding: 40px 32px 28px 32px; font-size: 20px; font-weight: 700; color: #1a1a1a; line-height: 1.3;">
+                                    Course Unregistration notification
+                                </td>
+                            </tr>
 
-        <!-- TOP LOGO -->
-        <div class="header-logo">
-            <span class="logo-text">inpulse</span>
-            <span class="logo-subtext">by Inunity</span>
-        </div>
+                            <!-- GIF Image -->
+                            <tr>
+                                <td style="text-align: center; padding: 0 32px 32px 32px;">
+                                    <img src="{{notification_gif_url}}" alt="notification gif" style="display: block; margin: 0 auto; max-width: 140px; height: auto; border: none;" width="140" />
+                                </td>
+                            </tr>
 
-        <!-- First Card - Main Content -->
-        <div class="mail-card">
+                            <!-- Greeting -->
+                            <tr>
+                                <td style="font-size: 14px; line-height: 1.6; padding: 0 32px 12px 32px; color: #1a1a1a; font-weight: 500;">
+                                    Dear <span style="font-weight: 600;">{{student_name}}</span>,
+                                </td>
+                            </tr>
 
-        <h2>Course Unregistration notification</h2>
+                            <!-- Intro text -->
+                            <tr>
+                                <td style="font-size: 14px; line-height: 1.6; padding: 0 32px 20px 32px; color: #1a1a1a; font-weight: 400;">
+                                    We are writing to inform you that you have been unregistered from the following course:
+                                </td>
+                            </tr>
 
-        <img src="{{notification_gif_url}}" class="mail-gif" alt="notification gif" />
+                            <!-- DETAILS BOX -->
+                            <tr>
+                                <td style="padding: 0 32px 24px 32px;">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tr>
+                                            <td style="font-size: 14px; color: #1a1a1a; line-height: 1.7; padding: 0 0 12px 0;">
+                                                <strong style="font-weight: 600;">Course Name:</strong> {{course_name}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px; color: #1a1a1a; line-height: 1.7; padding: 0 0 12px 0;">
+                                                <strong style="font-weight: 600;">Course Code:</strong> {{course_code}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px; color: #1a1a1a; line-height: 1.7; padding: 0 0 12px 0;">
+                                                <strong style="font-weight: 600;">Credits:</strong> {{credits}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px; color: #1a1a1a; line-height: 1.7; padding: 0 0 12px 0;">
+                                                <strong style="font-weight: 600;">Unregistered By:</strong> {{unregistered_by}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px; color: #1a1a1a; line-height: 1.7; padding: 0;">
+                                                <strong style="font-weight: 600;">Date & Time:</strong> {{date_time}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
 
-        <p class="greeting">Dear <span class="highlight">{{student_name}}</span>,</p>
+                            <!-- ALERT WARNING BOX -->
+                            <tr>
+                                <td style="padding: 0 32px 24px 32px;">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #FFD54F; border-radius: 6px;">
+                                        <tr>
+                                            <td style="padding: 18px; font-size: 14px; line-height: 1.6; color: #1a1a1a; font-weight: 400;">
+                                                Please note that this unregistration means you are no longer enrolled in this course and will not have access to course materials, assignments, or be able to participate in course activities.
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
 
-        <p class="intro-text">We are writing to inform you that you have been unregistered from the following course:</p>
+                            <!-- Instruction paragraph 1 -->
+                            <tr>
+                                <td style="font-size: 14px; line-height: 1.6; padding: 0 32px 20px 32px; color: #1a1a1a; font-weight: 400;">
+                                    If you believe this unregistration was made in error or if you have any questions regarding this action, please contact your course instructor or the academic office immediately.
+                                </td>
+                            </tr>
 
-        <div class="details-box">
-            <p><strong>Course Name:</strong> {{course_name}}</p>
-            <p><strong>Course Code:</strong> {{course_code}}</p>
-            <p><strong>Credits:</strong> {{credits}}</p>
-            <p><strong>Unregistered By:</strong> {{unregistered_by}}</p>
-            <p><strong>Date & Time:</strong> {{date_time}}</p>
-        </div>
+                            <!-- Instruction paragraph 2 -->
+                            <tr>
+                                <td style="font-size: 14px; line-height: 1.6; padding: 0 32px 40px 32px; color: #1a1a1a; font-weight: 400;">
+                                    If you wish to re-register for this course, please follow the standard course registration procedure during the next available registration period.
+                                </td>
+                            </tr>
 
-        <div class="alert-box">
-            Please note that this unregistration means you are no longer enrolled in this course and will not have access to course materials, assignments, or be able to participate in course activities.
-        </div>
+                        </table>
+                    </td>
+                </tr>
 
-        <p class="instruction-text">
-            If you believe this unregistration was made in error or if you have any questions regarding this action, please contact your course instructor or the academic office immediately.
-        </p>
+                <!-- SECOND WHITE CARD - Footer Content (More gap before this block) -->
+                <tr>
+                    <td style="padding: 0 0 20px 0;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
+                            
+                            <!-- Contact Section -->
+                            <tr>
+                                <td style="padding: 40px 32px 24px 32px;">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tr>
+                                            <td style="font-size: 14px; line-height: 1.6; padding: 0 0 12px 0; color: #1a1a1a; font-weight: 700;">
+                                                For assistance, please contact:
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px; line-height: 1.6; padding: 0; color: #1a1a1a; font-weight: 400;">
+                                                Academic Office<br />
+                                                Email: <a href="mailto:{{support_email}}" style="color: #1a1a1a; text-decoration: none; font-weight: 400;">{{support_email}}</a><br />
+                                                Phone: {{support_phone}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
 
-        <p class="instruction-text last-instruction">
-            If you wish to re-register for this course, please follow the standard course registration procedure during the next available registration period.
-        </p>
+                            <!-- Automated notification -->
+                            <tr>
+                                <td style="font-size: 14px; line-height: 1.6; padding: 0 32px 12px 32px; color: #1a1a1a; font-weight: 400;">
+                                    This is an automated notification. Please do not reply to this email.
+                                </td>
+                            </tr>
 
-    </div>
+                            <!-- Organization name -->
+                            <tr>
+                                <td style="font-size: 14px; line-height: 1.6; padding: 0 32px 32px 32px; color: #1a1a1a; font-weight: 400;">
+                                    @Sahyadri College of engineering and Management
+                                </td>
+                            </tr>
 
-    <!-- Second Card - Footer Content -->
-    <div class="footer-card">
+                        </table>
+                    </td>
+                </tr>
 
-        <div class="contact-section">
-            <p class="contact-heading"><strong>For assistance, please contact:</strong></p>
-            <p class="contact-details">
-                Academic Office<br>
-                Email: <a href="mailto:{{support_email}}">{{support_email}}</a><br>
-                Phone: {{support_phone}}
-            </p>
-        </div>
+                <!-- Social Icons -->
+                <tr>
+                    <td style="text-align: center; padding: 48px 0 20px 0;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tr>
+                                <td style="padding: 0 24px 0 0;">
+                                    <a href="https://www.linkedin.com/company/inunityprivatelimited/" target="_blank" style="display: inline-block; text-decoration: none;">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwNzdiNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAuNDQ3IDIwLjQ1MmgtMy41NTR2LTUuNTY5YzAtMS4zMjgtLjAyNy0zLjAzNy0xLjg1Mi0zLjAzNy0xLjg1MyAwLTIuMTM2IDEuNDQ1LTIuMTM2IDIuOTM5djUuNjY3SDkuMzUxVjloMy40MTR2MS41NjFoLjA0NmMuNDc3LS45IDEuNjM3LTEuODUgMy4zNy0xLjg1IDMuNjAxIDAgNC4yNjcgMi4zNyA0LjI2NyA1LjQ1NXY2LjI4NnpNNS4zMzcgNy40MzNjLTEuMTQ0IDAtMi4wNjMtLjkyNi0yLjA2My0yLjA2NSAwLTEuMTM4LjkyLTIuMDYzIDIuMDYzLTIuMDYzIDEuMTQgMCAyLjA2NC45MjUgMi4wNjQgMi4wNjMgMCAxLjEzOS0uOTI1IDIuMDY1LTIuMDY0IDIuMDY1em0xLjc4MiAxMy4wMTlIMy41NTVWOWgzLjU2NHYxMS40NTJ6TTIyLjIyNSAwSDEuNzcxQy43OTIgMCAwIC43NzQgMCAxLjcyOXYyMC41NDJDMCAyMy4yMjcuNzkyIDI0IDEuNzcxIDI0aDIwLjQ1MUMyMy4yIDI0IDI0IDIzLjIyNyAyNCAyMi4yNzFWMS43MjlDMjQgLjc3NCAyMy4yIDAgMjIuMjIyIDBoLjAwM3oiLz48L3N2Zz4=" alt="LinkedIn" style="display: block; width: 32px; height: 32px; border: none;" width="32" height="32" />
+                                    </a>
+                                </td>
+                                <td style="padding: 0;">
+                                    <a href="https://www.instagram.com/inunity.in?igsh=MWVoZDQ3YWdoNDV0cg==" target="_blank" style="display: inline-block; text-decoration: none;">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImlnLWdyYWQiIHgxPSIwJSIgeTE9IjEwMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGRUQ1NzY7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjI1JSIgc3R5bGU9InN0b3AtY29sb3I6I0Y0NzEzMztzdG9wLW9wYWNpdHk6MSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdHlsZT0ic3RvcC1jb2xvcjojQkMzMDgxO3N0b3Atb3BhY2l0eToxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNEM2M0QyO3N0b3Atb3BhY2l0eToxIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZmlsbD0idXJsKCNpZy1ncmFkKSIgZD0iTTEyIDIuMTYzYzMuMjA0IDAgMy41ODQuMDEyIDQuODUuMDcgMy4yNTIuMTQ4IDQuNzcxIDEuNjkxIDQuOTE5IDQuOTE5LjA1OCAxLjI2NS4wNjkgMS42NDUuMDY5IDQuODQ5IDAgMy4yMDUtLjAxMiAzLjU4NC0uMDY5IDQuODQ5LS4xNDkgMy4yMjUtMS42NjQgNC43NzEtNC45MTkgNC45MTktMS4yNjYuMDU4LTEuNjQ0LjA3LTQuODUuMDctMy4yMDQgMC0zLjU4NC0uMDEyLTQuODQ5LS4wNy0zLjI2LS4xNDktNC43NzEtMS42OTktNC45MTktNC45Mi0uMDU4LTEuMjY1LS4wNy0xLjY0NC0uMDctNC44NDkgMC0zLjIwNC4wMTMtMy41ODMuMDctNC44NDkuMTQ5LTMuMjI3IDEuNjY0LTQuNzcxIDQuOTE5LTQuOTE5IDEuMjY2LS4wNTcgMS42NDUtLjA2OSA0Ljg0OS0uMDY5em0wLTIuMTYzYy0zLjI1OSAwLTMuNjY3LjAxNC00Ljk0Ny4wNzItNC4zNTguMi02Ljc4IDIuNjE4LTYuOTggNi45OC0uMDU5IDEuMjgxLS4wNzMgMS42ODktLjA3MyA0Ljk0OCAwIDMuMjU5LjAxNCAzLjY2OC4wNzIgNC45NDguMiA0LjM1OCAyLjYxOCA2Ljc4IDYuOTggNi45OCAxLjI4MS4wNTggMS42ODkuMDcyIDQuOTQ4LjA3MiAzLjI1OSAwIDMuNjY4LS4wMTQgNC45NDgtLjA3MiA0LjM1NC0uMiA2Ljc4Mi0yLjYxOCA2Ljk3OS02Ljk4LjA1OS0xLjI4LjA3My0xLjY4OS4wNzMtNC45NDggMC0zLjI1OS0uMDE0LTMuNjY3LS4wNzItNC45NDctLjE5Ni00LjM1NC0yLjYxNy02Ljc4LTYuOTc5LTYuOTgtMS4yODEtLjA1OS0xLjY5LS4wNzMtNC45NDktLjA3M3ptMCA1LjgzOGMtMy40MDMgMC02LjE2MiAyLjc1OS02LjE2MiA2LjE2MnMyLjc1OSA2LjE2MyA2LjE2MiA2LjE2MyA2LjE2Mi0yLjc1OSA2LjE2Mi02LjE2M2MwLTMuNDAzLTIuNzU5LTYuMTYyLTYuMTYyLTYuMTYyem0wIDEwLjE2MmMtMi4yMDkgMC00LTEuNzktNC00IDAtMi4yMDkgMS43OTEtNCA0LTRzNCAxLjc5MSA0IDRjMCAyLjIxLTEuNzkxIDQtNCA0em02LjQwNi0xMS44NDVjLS43OTYgMC0xLjQ0MS42NDUtMS40NDEgMS40NHMuNjQ1IDEuNDQgMS40NDEgMS40NGMuNzk1IDAgMS40MzktLjY0NSAxLjQzOS0xLjQ0cy0uNjQ0LTEuNDQtMS40MzktMS40NHoiLz48L3N2Zz4=" alt="Instagram" style="display: block; width: 32px; height: 32px; border: none;" width="32" height="32" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-        <p class="automated-note">This is an automated notification. Please do not reply to this email.</p>
-        <p class="institution-note">@Sahyadri College of engineering and Management</p>
+                <!-- Copyright -->
+                <tr>
+                    <td style="text-align: center; font-size: 14px; padding: 0 0 32px 0; color: #666666; font-weight: 400; line-height: 1.4;">
+                        ©InUnity Pvt Ltd
+                    </td>
+                </tr>
 
-        </div>
-
-        <!-- Social Icons and Copyright - Inside pink container -->
-        <div class="socials">
-            <a href="https://www.linkedin.com/company/inunityprivatelimited/" target="_blank">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="#0077b5">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-            </a>
-            <a href="https://www.instagram.com/inunity.in?igsh=MWVoZDQ3YWdoNDV0cg==" target="_blank">
-                <svg width="32" height="32" viewBox="0 0 24 24">
-                    <defs>
-                        <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#FED576;stop-opacity:1" />
-                            <stop offset="25%" style="stop-color:#F47133;stop-opacity:1" />
-                            <stop offset="50%" style="stop-color:#BC3081;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#4C63D2;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <path fill="url(#instagram-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-            </a>
-        </div>
-
-        <p class="copyright">© InUnity Pvt Ltd</p>
-
-    </div>
-    <!-- End of Light Pale Pink Container -->
-</div>
+            </table>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
